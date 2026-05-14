@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bantaeng Digital Map</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial,sans-serif;
+    }
+
+    body{
+      background:linear-gradient(to bottom,#ffd6e0,#fff0f3);
+      min-height:100vh;
+      overflow:hidden;
+    }
+
+    h1{
+      text-align:center;
+      padding-top:20px;
+      color:#c9184a;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#555;
+      margin-bottom:20px;
+    }
+
+    .map-container{
+      position:relative;
+      width:90%;
+      max-width:700px;
+      margin:auto;
+    }
+
+    /* GAMBAR PETA */
+    .map-image{
+      width:100%;
+      display:block;
+      border-radius:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* HOTSPOT TAK TERLIHAT */
+    .hotspot{
+      position:absolute;
+      width:80px;
+      height:80px;
+      border-radius:50%;
+      cursor:pointer;
+    }
+
+    /* POSISI TITIK */
+    .seruni{
+      top:62%;
+      left:35%;
+    }
+
+    .eremerasa{
+      top:40%;
+      left:45%;
+    }
+
+    .loka{
+      top:60%;
+      left:15%;
+    }
+
+    /* POPUP */
+    .popup{
+      position:absolute;
+      width:250px;
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+      opacity:0;
+      pointer-events:none;
+
+      transition:0.4s;
+      z-index:10;
+    }
+
+    .popup img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+    }
+
+    .popup-content{
+      padding:15px;
+    }
+
+    .popup h2{
+      color:#c9184a;
+      margin-bottom:8px;
+    }
+
+    .popup p{
+      color:#444;
+      line-height:1.5;
+    }
+
+    /* MUNCUL SAAT DIHOVER */
+    .seruni:hover ~ .popup-seruni{
+      opacity:1;
+      top:55%;
+      left:-10px;
+    }
+
+    .eremerasa:hover ~ .popup-eremerasa{
+      opacity:1;
+      top:10%;
+      right:-20px;
+    }
+
+    .loka:hover ~ .popup-loka{
+      opacity:1;
+      top:50%;
+      left:1px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>The Bantaeng Digital Map</h1>
+  
+  <marquee bgcolor="lighblue" behavior="" direction="">by KELOMPOK 3 : 👑 1.ANDI MUHAMMAD WAL IKRAM  2.Fairus Alma Nadhif  3.Rezki Ardiansyah  4.Nur Annisa  5.Nur Alifah Mudiah</marquee>
+
+  <p class="subtitle">
+    Sentuh wilayah pada peta 
+  </p>
+
+  <div class="map-container">
+
+    <!-- GANTI DENGAN PETA BANTAENG -->
+    <img src="bantaeng.png" class="map-image">
+
+    <!-- HOTSPOT -->
+    <div class="hotspot seruni"></div>
+    <div class="hotspot eremerasa"></div>
+    <div class="hotspot loka"></div>
+
+    <!-- POPUP SERUNI -->
+    <div class="popup popup-seruni">
+
+      <img src="seruni.jpg">
+
+      <div class="popup-content">
+
+        <h2>Seruni</h2>
+
+        <p>
+          Pantai Seruni terkenal dengan sunset indah,
+          suasana santai, pemandangan laut yang cantik, pusat kuliner, serta area olahraga (sport center).
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- POPUP EREMERASA -->
+    <div class="popup popup-eremerasa">
+
+      <img src="eremerasa.jpg">
+
+      <div class="popup-content">
+
+        <h2>Eremerasa</h2>
+
+        <p>
+          Eremerasa memiliki pegunungan hijau,
+          udara dingin, dan panorama alam yang sejuk. Serta memiliki permandian yang cukup terkenal
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- POPUP LOKA -->
+    <div class="popup popup-loka">
+
+      <img src="loka.jpg">
+
+      <div class="popup-content">
+
+        <h2>Loka</h2>
+
+        <p>
+          Loka terkenal sebagai kawasan wisata alam
+          dengan suasana asri dan udara segar serta kawasan ini menyuguhkan hamparan kebun stroberi.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
