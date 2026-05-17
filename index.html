@@ -7,7 +7,102 @@
   <title>Bantaeng Digital Map</title>
 
   <style>
+.music-player{
 
+  position:fixed;
+
+  top:20px;
+  left:20px;
+
+  width:260px;
+
+  padding:15px;
+
+  border-radius:25px;
+
+  background:rgba(255,255,255,0.15);
+  
+  cursor:move;
+
+  backdrop-filter:blur(15px);
+
+  border:1px solid rgba(255,255,255,0.2);
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+  z-index:999;
+
+  color:white;
+}
+
+.music-info h3{
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+.music-info p{
+  font-size:12px;
+  opacity:0.8;
+}
+
+.music-buttons{
+
+  margin-top:12px;
+
+  display:flex;
+
+  gap:10px;
+}
+
+.music-buttons button{
+
+  flex:1;
+
+  border:none;
+
+  padding:10px;
+
+  border-radius:15px;
+
+  background:white;
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  transition:0.3s;
+}
+
+.music-buttons button:hover{
+  transform:scale(1.12);
+}
+}
+
+.music-player button{
+  border:none;
+
+  padding:12px 15px;
+
+  border-radius:15px;
+
+  background:white;
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+  transition:0.3s;
+}
+
+.music-player button:hover{
+  transform:scale(1.15);
+}
+
+.music-player button:hover{
+  transform:scale(1.1);
+}
     *{
       margin:0;
       padding:0;
@@ -15,11 +110,25 @@
       font-family:Arial,sans-serif;
     }
 
-    body{
-      background:linear-gradient(to bottom,#ffd6e0,#fff0f3);
-      min-height:100vh;
-      overflow:hidden;
-    }
+    body:{
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at top left,
+    rgba(255,255,255,0.25),
+    transparent 35%),
+
+    radial-gradient(circle at bottom right,
+    rgba(255,255,255,0.15),
+    transparent 30%);
+
+  filter:blur(30px);
+
+  z-index:-1;
+}
 
     h1{
       text-align:center;
@@ -46,6 +155,8 @@
       display:block;
       border-radius:20px;
       box-shadow:0 10px 25px rgba(0,0,0,0.15);
+      
+      transition:0.5s;
     }
 
     /* HOTSPOT TAK TERLIHAT */
@@ -64,14 +175,39 @@
     }
 
     .eremerasa{
-      top:40%;
+      top:43%;
       left:45%;
     }
 
     .loka{
-      top:60%;
-      left:15%;
+      top:45%;
+      left:20%;
     }
+   
+    .marina{
+  top:65%;
+  left:55%;
+   }
+
+    .bissappu{
+  top:34%;
+  left:38%;
+   }
+   
+   .uluere{
+  top:23%;
+  left:26%;
+}
+
+   .gantarang{
+  top:48%;
+  left:58%;
+}
+
+   .erbol{
+  top:28%;
+  left:55%;
+}
 
     /* POPUP */
     .popup{
@@ -81,6 +217,7 @@
       border-radius:20px;
       overflow:hidden;
       box-shadow:0 10px 25px rgba(0,0,0,0.2);
+      transform:scale(0.8);
 
       opacity:0;
       pointer-events:none;
@@ -112,21 +249,149 @@
     /* MUNCUL SAAT DIHOVER */
     .seruni:hover ~ .popup-seruni{
       opacity:1;
+      
+      transform:scale(1);
+      
       top:55%;
       left:-10px;
     }
 
     .eremerasa:hover ~ .popup-eremerasa{
       opacity:1;
+      
+      transform:scale(1);
+      
       top:10%;
       right:-20px;
     }
+    
+    .marina:hover ~ .popup-marina{
+
+  opacity:1;
+
+  top:58%;
+  left:30%;
+
+  transform:scale(1);
+}
+
+.bissappu:hover ~ .popup-bissappu,
+.bissappu:active ~ .popup-bissappu{
+
+  opacity:1;
+
+  top:35%;
+  left:5%;
+
+  transform:scale(1);
+}
+
+   .bissappu{
+  top:59%;
+  left:18%;
+}
 
     .loka:hover ~ .popup-loka{
       opacity:1;
+      
+      transform:scale(1);
+      
       top:50%;
       left:1px;
     }
+    
+    .map-image:hover{
+  transform:scale(1.03);
+}
+
+.gantarang:hover ~ .popup-gantarang,
+.gantarang:active ~ .popup-gantarang{
+
+  opacity:1;
+
+  top:28%;
+  left:32%;
+
+  transform:scale(1);
+}
+
+.uluere:hover ~ .popup-uluere,
+.uluere:active ~ .popup-uluere{
+
+  opacity:1;
+
+  top:12%;
+  left:10%;
+
+  transform:scale(1);
+}
+
+.erbol:hover ~ .popup-erbol,
+.erbol:active ~ .popup-erbol{
+
+  opacity:1;
+
+  top:5%;
+  left:30%;
+
+  transform:scale(1);
+}
+
+    .bupati-card{
+
+  width:300px;
+
+  margin:30px auto;
+
+  background:white;
+
+  border-radius:20px;
+
+  padding:20px;
+
+  text-align:center;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+  animation:fadeUp 1s ease;
+}
+
+.bupati-card img{
+
+  width:150px;
+  height:150px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  margin-bottom:15px;
+
+  border:5px solid #ff4d8d;
+}
+
+.bupati-card h2{
+  color:#c9184a;
+  margin-bottom:10px;
+}
+
+.bupati-card p{
+  color:#555;
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
 
   </style>
 </head>
@@ -134,10 +399,11 @@
 
   <h1>The Bantaeng Digital Map</h1>
   
-  <marquee bgcolor="lighblue" behavior="" direction="">by KELOMPOK 3 : 👑 1.ANDI MUHAMMAD WAL IKRAM  2.Fairus Alma Nadhif  3.Rezki Ardiansyah  4.Nur Annisa  5.Nur Alifah Mudiah</marquee>
+  <marquee bgcolor="lighblue" behavior="" direction="">by : KELOMPOK 3 👑 1.ANDI MUHAMMAD WAL IKRAM   2.Fairus Alma Nadhif   3.Rezki Ardiansyah   4.Nur Annisa   5.Nur Alifah Mudiah</marquee>
 
   <p class="subtitle">
     Sentuh wilayah pada peta 
+
   </p>
 
   <div class="map-container">
@@ -149,6 +415,11 @@
     <div class="hotspot seruni"></div>
     <div class="hotspot eremerasa"></div>
     <div class="hotspot loka"></div>
+    <div class="hotspot marina"></div>
+    <div class="hotspot bissappu"></div>
+    <div class="hotspot uluere"></div>
+    <div class="hotspot gantarang"></div>
+    <div class="hotspot erbol"></div>
 
     <!-- POPUP SERUNI -->
     <div class="popup popup-seruni">
@@ -157,7 +428,7 @@
 
       <div class="popup-content">
 
-        <h2>Seruni</h2>
+        <h2>Pantai Seruni</h2>
 
         <p>
           Pantai Seruni terkenal dengan sunset indah,
@@ -167,11 +438,31 @@
       </div>
 
     </div>
+    
+    <div class="popup popup-erbol">
+
+  <img src="erbols.jpg">
+
+  <div class="popup-content">
+
+    <h2>Permandian Erbol</h2>
+
+    <p>
+      Permandian Erbol terkenal dengan
+      suasana pegunungan yang sejuk,
+      hamparan alam hijau,
+      udara segar,
+      serta panorama yang indah untuk wisata alam.
+    </p>
+
+  </div>
+
+</div>
 
     <!-- POPUP EREMERASA -->
     <div class="popup popup-eremerasa">
 
-      <img src="eremerasa.jpg">
+      <img src="eremerasas.jpg">
 
       <div class="popup-content">
 
@@ -179,7 +470,7 @@
 
         <p>
           Eremerasa memiliki pegunungan hijau,
-          udara dingin, dan panorama alam yang sejuk. Serta memiliki permandian yang cukup terkenal
+          udara dingin, dan panorama alam yang sejuk. Serta memiliki permandian yang cukup terkenal.
         </p>
 
       </div>
@@ -204,7 +495,475 @@
 
     </div>
 
+<div class="popup popup-marina">
+
+  <img src="marina.jpg">
+
+  <div class="popup-content">
+
+    <h2>Pantai Marina</h2>
+
+    <p>
+      Pantai Marina terkenal dengan pasir putih,
+      suasana santai, dan pemandangan laut yang indah.
+    </p>
+
   </div>
+
+</div>
+
+<div class="popup popup-bissappu">
+
+  <img src="bissappu.jpg">
+
+  <div class="popup-content">
+
+    <h2>Air Terjun Bissappu</h2>
+
+    <p>
+      Air Terjun Bissappu terkenal dengan
+      suasana alam yang sejuk, aliran air yang jernih,
+      serta pemandangan pegunungan yang indah dan asri.
+    </p>
+
+  </div>
+
+</div>
+
+<div class="popup popup-uluere">
+
+  <img src="uluere.jpg">
+
+  <div class="popup-content">
+
+    <h2>Muntea HighLand</h2>
+
+    <p>
+      Muntea HighLand terkenal dengan udara dingin,
+      pemandangan pegunungan yang indah,
+      hamparan alam hijau,
+      serta suasana tenang dan sejuk.
+    </p>
+
+  </div>
+
+</div>
+
+<div class="popup popup-gantarang">
+
+  <img src="rumahkbn.jpg">
+
+  <div class="popup-content">
+
+    <h2>Rumah Kebun</h2>
+
+    <p>
+      Rumah Kebun terkenal sebagai tempat wisata kuliner dengan 
+      kawasan wisata alam,
+      panorama pegunungan,
+      udara sejuk,
+      serta spot foto yang menarik.
+    </p>
+
+  </div>
+
+</div>
+
+  </div>
+  <div class="bupati-card">
+
+  <img src="bupati.jpg">
+
+  <h2>Foto Bupati dan Wakil Bupati Kab.Bantaeng</h2>
+
+  <p>
+    
+  </p>
+
+</div>
+
+<script>
+
+/* =========================
+   SERUNI
+========================= */
+
+const seruni =
+document.querySelector(".seruni");
+
+seruni.addEventListener("click", ()=>{
+
+  speechSynthesis.cancel();
+
+  const text =
+  new SpeechSynthesisUtterance(
+
+    "Pantai Seruni terkenal dengan sunset indah, suasana santai, pemandangan laut yang cantik, pusat kuliner, serta area olahraga."
+
+  );
+
+  text.lang = "id-ID";
+
+  speechSynthesis.speak(text);
+
+});
+
+
+/* =========================
+   EREMERASA
+========================= */
+
+const eremerasa =
+document.querySelector(".eremerasa");
+
+eremerasa.addEventListener("click", ()=>{
+
+  speechSynthesis.cancel();
+
+  const text =
+  new SpeechSynthesisUtterance(
+
+    "Eremerasa memiliki pegunungan hijau,udara dingin, dan panorama alam yang sejuk. Serta memiliki permandian yang cukup terkenal."
+
+  );
+
+  text.lang = "id-ID";
+
+  speechSynthesis.speak(text);
+
+});
+
+
+/* =========================
+   LOKA
+========================= */
+
+const loka =
+document.querySelector(".loka");
+
+loka.addEventListener("click", ()=>{
+
+  speechSynthesis.cancel();
+
+  const text =
+  new SpeechSynthesisUtterance(
+
+    "Loka terkenal sebagai kawasan wisata alam dengan suasana asri, udara segar, dan hamparan kebun stroberi."
+
+  );
+
+  text.lang = "id-ID";
+
+  speechSynthesis.speak(text);
+
+});
+
+
+/* =========================
+   MARINA
+========================= */
+
+const marina =
+document.querySelector(".marina");
+
+marina.addEventListener("click", ()=>{
+
+  speechSynthesis.cancel();
+
+  const text =
+  new SpeechSynthesisUtterance(
+
+    "Pantai Marina terkenal dengan pasir putih,suasana santai, dan pemandangan laut yang indah."
+
+  );
+
+  text.lang = "id-ID";
+
+  speechSynthesis.speak(text);
+
+});
+
+
+/* =========================
+   BISSAPPU
+========================= */
+
+const bissappu =
+document.querySelector(".bissappu");
+
+bissappu.addEventListener("click", ()=>{
+
+  speechSynthesis.cancel();
+
+  const text =
+  new SpeechSynthesisUtterance(
+
+    "Air Terjun Bissappu terkenal dengan suasana alam yang sejuk, air yang jernih, dan panorama pegunungan yang indah."
+
+  );
+
+  text.lang = "id-ID";
+
+  speechSynthesis.speak(text);
+
+});
+
+
+/* =========================
+   ULU ERE
+========================= */
+
+const uluere =
+document.querySelector(".uluere");
+
+uluere.addEventListener("click", ()=>{
+
+  speechSynthesis.cancel();
+
+  const text =
+  new SpeechSynthesisUtterance(
+
+    "Muntea HighLand terkenal dengan udara dingin,pemandangan pegunungan yang indah,hamparan alam hijau,serta suasana tenang dan sejuk."
+
+  );
+
+  text.lang = "id-ID";
+
+  speechSynthesis.speak(text);
+
+});
+
+
+/* =========================
+   GANTARANG KEKE
+========================= */
+
+const gantarang =
+document.querySelector(".gantarang");
+
+gantarang.addEventListener("click", ()=>{
+
+  speechSynthesis.cancel();
+
+  const text =
+  new SpeechSynthesisUtterance(
+
+    "Rumah Kebun terkenal sebagai tempat wisata kuliner dengan kawasan wisata alam,panorama pegunungan,udara sejuk,serta spot foto yang menarik."
+
+  );
+
+  text.lang = "id-ID";
+
+  speechSynthesis.speak(text);
+
+});
+
+
+/* =========================
+   TOMPOBULU / ERBOL
+========================= */
+
+const erbol =
+document.querySelector(".erbol");
+
+erbol.addEventListener("click", ()=>{
+
+  speechSynthesis.cancel();
+
+  const text =
+  new SpeechSynthesisUtterance(
+
+    "Permandian Erbol terkenal dengansuasana pegunungan yang sejuk,hamparan alam hijau,udara segar,serta panorama yang indah untuk wisata alam."
+
+  );
+
+  text.lang = "id-ID";
+
+  speechSynthesis.speak(text);
+
+});
+
+</script>
+  
+  <div class="music-player">
+
+  <div class="music-info">
+
+    <h3 id="songTitle">🎵 Sunset Bantaeng</h3>
+
+    <p>Background Music</p>
+
+  </div>
+
+  <div class="music-buttons">
+
+    <button onclick="playMusic()">▶️</button>
+
+    <button onclick="pauseMusic()">⏸️</button>
+
+    <button onclick="nextMusic()">⏭️</button>
+
+  </div>
+
+</div>
+
+<audio id="bgMusic"></audio>
+<script>
+
+const songs = [
+
+  {
+    src:"presentasi.mp3",
+    title:"🎵 Backsound Presentasi"
+  },
+  
+  {
+    src:"marina.mp3",
+    title:"🎵 Pantai Marina (Nurdin Abdullah)"
+  },
+  
+  {
+    src:"btgberubah.mp3",
+    title:"🎵 Bantaeng Berubah (Nurdin Abdullah)"
+  },
+
+  {
+    src:"justin.mp3",
+    title:"🎵 Favorite Girl (Justin Bieber)"
+  },
+  
+  {
+    src:"brunomars.mp3",
+    title:"🎵 The Lazy Song (Bruno Mars)"
+  },
+  
+  {
+    src:"taylors.mp3",
+    title:"🎵 Love Story (Taylor Swift)"
+  }
+
+];
+
+let currentSong = 0;
+
+const audio = document.getElementById("bgMusic");
+
+const songTitle =
+document.getElementById("songTitle");
+
+function loadSong(){
+
+  audio.src = songs[currentSong].src;
+
+  songTitle.innerText =
+  songs[currentSong].title;
+}
+
+loadSong();
+
+function playMusic(){
+  audio.play();
+}
+
+function pauseMusic(){
+  audio.pause();
+}
+
+function nextMusic(){
+
+  currentSong++;
+
+  if(currentSong >= songs.length){
+    currentSong = 0;
+  }
+
+  loadSong();
+
+  audio.play();
+}
+
+</script>
+
+<script>
+
+const player =
+document.querySelector(".music-player");
+
+let isDragging = false;
+
+let offsetX, offsetY;
+
+player.addEventListener("mousedown", (e)=>{
+
+  isDragging = true;
+
+  offsetX = e.clientX - player.offsetLeft;
+
+  offsetY = e.clientY - player.offsetTop;
+
+});
+
+document.addEventListener("mousemove", (e)=>{
+
+  if(isDragging){
+
+    player.style.left =
+    (e.clientX - offsetX) + "px";
+
+    player.style.top =
+    (e.clientY - offsetY) + "px";
+
+  }
+
+});
+
+document.addEventListener("mouseup", ()=>{
+
+  isDragging = false;
+
+});
+
+</script>
+
+<script>
+
+player.addEventListener("touchstart", (e)=>{
+
+  isDragging = true;
+
+  offsetX =
+  e.touches[0].clientX -
+  player.offsetLeft;
+
+  offsetY =
+  e.touches[0].clientY -
+  player.offsetTop;
+
+});
+
+document.addEventListener("touchmove", (e)=>{
+
+  if(isDragging){
+
+    player.style.left =
+    (e.touches[0].clientX - offsetX)
+    + "px";
+
+    player.style.top =
+    (e.touches[0].clientY - offsetY)
+    + "px";
+
+  }
+
+});
+
+document.addEventListener("touchend", ()=>{
+
+  isDragging = false;
+
+});
+
+</script>
 
 </body>
 </html>
